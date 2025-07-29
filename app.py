@@ -28,7 +28,7 @@ def calculator():
     elif operation == "multiply":
        result = a * b
     elif operation == "divide":
-       if b = 0:
+       if b == 0:
            return jsonify(error="Division by zero is npt allowed"), 400
        result = a / b
 
