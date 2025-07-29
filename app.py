@@ -14,11 +14,10 @@ def calculator():
     b = data.get("b")
     result = None
 
-  
     try:
         a = float(a)
         b = float(b)
-    except ValueError:
+    except (ValueError, TypeError):
         return jsonify(error="Invalid input.please enter numbers only."), 400
 
     if operation == "add":
@@ -29,11 +28,13 @@ def calculator():
        result = a * b
     elif operation == "divide":
        if b == 0:
-           return jsonify(error="Division by zero is npt allowed"), 400
+           return jsonify(error="Division by zero is not allowed."), 400
        result = a / b
-
-     return jsonify(result=result)
+    else:
+       return jsonify(error="Invalid operation. Use add, subtract, multiply, or divide."), 400
+        
+    return jsonify(result=result)
 
  if __name__=="__main__":
-     app.run(host="0.0.0.0",port=80)
+     app.run(host="0.0.0.0", port=80)
     
